@@ -250,6 +250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 3.5
   _laserPrefab: {fileID: 2945077927220362426, guid: 614e377dfa0630348811feb2789e10f9, type: 3}
+  _fireRate: 0.3
 --- !u!65 &359426713
 BoxCollider:
   m_ObjectHideFlags: 0
