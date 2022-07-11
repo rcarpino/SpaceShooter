@@ -18,15 +18,33 @@ public class Enemy : MonoBehaviour
     {
 
         transform.Translate(Vector3.down * _enemySpeed * Time.deltaTime);
-        //move down at 4 meters per second
+       
         if(transform.position.y < -5.4f)
         {
             float randomX = Random.Range(-9.5f, 9.5f);
             transform.position = new Vector3(randomX, 7.3f, 0); 
         }
-        //if bottom of screen
-        //respawn at top with random x position  
+    }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            Player player = other.transform.GetComponent<Player>();
 
+            if (player != null)
+            {
+                player.Damage();
+            }
+
+            Destroy(this.gameObject);
+            
+        }
+
+        if(other.tag == "Laser")
+        {
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
+        }
     }
 }

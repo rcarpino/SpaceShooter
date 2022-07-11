@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 359426712}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -251,6 +251,7 @@ MonoBehaviour:
   _speed: 3.5
   _laserPrefab: {fileID: 2945077927220362426, guid: 614e377dfa0630348811feb2789e10f9, type: 3}
   _fireRate: 0.3
+  _lives: 3
 --- !u!65 &359426713
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -259,7 +260,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 359426711}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -427,11 +428,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5264239880515324030, guid: 6b1bd7b99718da44aaf24e0b76d4b0b7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.06
       objectReference: {fileID: 0}
     - target: {fileID: 5264239880515324030, guid: 6b1bd7b99718da44aaf24e0b76d4b0b7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 4.81
       objectReference: {fileID: 0}
     - target: {fileID: 5264239880515324030, guid: 6b1bd7b99718da44aaf24e0b76d4b0b7, type: 3}
       propertyPath: m_LocalPosition.z
