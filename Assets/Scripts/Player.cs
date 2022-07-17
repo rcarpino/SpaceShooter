@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _lives = 3;
     private SpawnManager _spawnManager;
+    [SerializeField]
+    private GameObject _tripleShotPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +28,7 @@ public class Player : MonoBehaviour
             Debug.LogError("Spawn Manager is null");
         }
     }
-
+    
     // Update is called once per frame
     void Update()
     {
