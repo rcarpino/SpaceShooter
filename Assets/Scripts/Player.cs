@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
     private bool _isTripleShotActive = false;
     [SerializeField]
     private bool _isSpeedBoostActive = false;
+    [SerializeField]
+    private bool _isShieldActive = false;
 
     //speed booster increase to 8.5 for 5 seconds.
     //if speed boost
@@ -91,6 +93,16 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
+        if(_isShieldActive == true)
+        {
+            _isShieldActive = false;
+            return;
+        }
+        //if shields is active
+        //do nothing..
+        //deactivate shields 
+        //return.
+
         _lives--;
 
         if(_lives < 1)
@@ -111,6 +123,11 @@ public class Player : MonoBehaviour
         _isSpeedBoostActive = true;
         _speed *= _speedMultiplier;
         StartCoroutine(SpeedBoostPowerDownRoutine());
+    }
+
+    public void ShieldActive()
+    {
+        _isShieldActive = true;
     }
 
     IEnumerator TripleShotPowerDownRoutine()
