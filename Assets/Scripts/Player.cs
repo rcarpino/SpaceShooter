@@ -27,9 +27,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     private bool _isShieldActive = false;
 
-    //speed booster increase to 8.5 for 5 seconds.
-    //if speed boost
-
+    //variable reference to the shield visualizer
+    [SerializeField]
+    private GameObject shieldVisualizer;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -96,6 +97,8 @@ public class Player : MonoBehaviour
         if(_isShieldActive == true)
         {
             _isShieldActive = false;
+            shieldVisualizer.SetActive(false);
+            //disable visualizer
             return;
         }
         //if shields is active
@@ -128,6 +131,8 @@ public class Player : MonoBehaviour
     public void ShieldActive()
     {
         _isShieldActive = true;
+        shieldVisualizer.SetActive(true);
+        //enable shield visualizer
     }
 
     IEnumerator TripleShotPowerDownRoutine()
