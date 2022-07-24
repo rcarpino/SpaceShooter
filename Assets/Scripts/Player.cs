@@ -150,7 +150,6 @@ public class Player : MonoBehaviour
     {
         _isShieldActive = true;
         shieldVisualizer.SetActive(true);
-        //enable shield visualizer
     }
 
     IEnumerator TripleShotPowerDownRoutine()
