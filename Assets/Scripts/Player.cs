@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _lives = 3;
     private SpawnManager _spawnManager;
-    
+
     [SerializeField]
     private bool _isTripleShotActive = false;
     [SerializeField]
@@ -30,15 +30,28 @@ public class Player : MonoBehaviour
     //variable reference to the shield visualizer
     [SerializeField]
     private GameObject shieldVisualizer;
+
+    [SerializeField]
+    private int _score;
+
+    private UIManager _uiManager;
+
     
     // Start is called before the first frame update
     void Start()
-    {
+    { 
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
-        
+        _uiManager = GameObject.Find("Canvas").GetComponentInChildren<UIManager>();
+
+
         if(_spawnManager == null)
         {
             Debug.LogError("Spawn Manager is null");
+        }
+
+        if(_uiManager == null)
+        {
+            Debug.LogError("UI Manager is null");
         }
     }
     
@@ -98,13 +111,8 @@ public class Player : MonoBehaviour
         {
             _isShieldActive = false;
             shieldVisualizer.SetActive(false);
-            //disable visualizer
             return;
         }
-        //if shields is active
-        //do nothing..
-        //deactivate shields 
-        //return.
 
         _lives--;
 
@@ -113,6 +121,14 @@ public class Player : MonoBehaviour
             _spawnManager.onPlayerDeath();
             Destroy(this.gameObject);
         }
+    }
+
+    public void AddtoScore(int points)
+    {
+        //add 10 to the score.
+        _score += points;
+        _uiManager.UpdateScore(_score);
+        //communicate with UI to update the score.
     }
 
     public void TripleShotActive()
