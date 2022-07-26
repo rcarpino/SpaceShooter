@@ -29,7 +29,13 @@ public class Player : MonoBehaviour
 
     //variable reference to the shield visualizer
     [SerializeField]
-    private GameObject shieldVisualizer;
+    private GameObject _shieldVisualizer;
+    
+    [SerializeField]
+    private GameObject _rightShieldVisualizer, _leftShieldVisualizer;
+
+    
+
 
     [SerializeField]
     private int _score;
@@ -110,11 +116,29 @@ public class Player : MonoBehaviour
         if(_isShieldActive == true)
         {
             _isShieldActive = false;
-            shieldVisualizer.SetActive(false);
+            _shieldVisualizer.SetActive(false);
             return;
         }
 
         _lives--;
+        
+        if(_lives == 2)
+        {
+            _rightShieldVisualizer.SetActive(true);
+        }
+        else if(_lives == 1)
+        {
+            _leftShieldVisualizer.SetActive(true);
+        }
+        
+        //if lives is 2
+        //Enable right engine
+        //else if lives is 1
+        //enable left engine
+
+
+
+
         _uiManager.UpdateLives(_lives);
 
 
@@ -149,7 +173,7 @@ public class Player : MonoBehaviour
     public void ShieldActive()
     {
         _isShieldActive = true;
-        shieldVisualizer.SetActive(true);
+        _shieldVisualizer.SetActive(true);
     }
 
     IEnumerator TripleShotPowerDownRoutine()
