@@ -130,14 +130,6 @@ public class Player : MonoBehaviour
         {
             _leftShieldVisualizer.SetActive(true);
         }
-        
-        //if lives is 2
-        //Enable right engine
-        //else if lives is 1
-        //enable left engine
-
-
-
 
         _uiManager.UpdateLives(_lives);
 
