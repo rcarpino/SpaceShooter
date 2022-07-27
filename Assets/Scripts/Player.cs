@@ -27,14 +27,18 @@ public class Player : MonoBehaviour
     [SerializeField]
     private bool _isShieldActive = false;
 
-    //variable reference to the shield visualizer
     [SerializeField]
     private GameObject _shieldVisualizer;
     
     [SerializeField]
     private GameObject _rightShieldVisualizer, _leftShieldVisualizer;
 
+
+    //variable to store Audio Clip
+    [SerializeField]
+    private AudioClip _laserSoundClip;
     
+    private AudioSource _audioSource;
 
 
     [SerializeField]
@@ -45,19 +49,32 @@ public class Player : MonoBehaviour
     
     // Start is called before the first frame update
     void Start()
-    { 
+    {
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponentInChildren<UIManager>();
-
+        _audioSource = GetComponent<AudioSource>();
 
         if(_spawnManager == null)
         {
-            Debug.LogError("Spawn Manager is null");
+            Debug.LogError("Spawn Manager is NULL");
         }
 
         if(_uiManager == null)
         {
-            Debug.LogError("UI Manager is null");
+            Debug.LogError("UI Manager is NULL");
+        }
+        else
+        {
+            _audioSource.clip = _laserSoundClip;
+        }
+
+        if(_audioSource == null)
+        {
+            Debug.LogError("Audio Source on Player is NULL");
+        }
+        else
+        {
+            _audioSource.clip = _laserSoundClip;
         }
     }
     
@@ -108,6 +125,8 @@ public class Player : MonoBehaviour
         {
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.8f, 0), Quaternion.identity);
         }
+        _audioSource.Play();
+        //play the laser audio clip
         
     }
 
