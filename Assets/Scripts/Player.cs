@@ -33,8 +33,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _rightShieldVisualizer, _leftShieldVisualizer;
 
-
-    //variable to store Audio Clip
     [SerializeField]
     private AudioClip _laserSoundClip;
     

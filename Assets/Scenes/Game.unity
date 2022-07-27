@@ -2027,6 +2027,10 @@ PrefabInstance:
       propertyPath: _explosionPrefab
       value: 
       objectReference: {fileID: 7146274548386825431, guid: 9b2b7e55971c2874089950c5023a464d, type: 3}
+    - target: {fileID: 927297419, guid: 32acc8c26e163bd47890e8cf90d69fc4, type: 3}
+      propertyPath: _explosionSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a885c043fab7e46438bba03ba9dab6bc, type: 3}
     - target: {fileID: 6169105911467524608, guid: 32acc8c26e163bd47890e8cf90d69fc4, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -2075,5 +2079,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -1428645246788084641, guid: 32acc8c26e163bd47890e8cf90d69fc4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 32acc8c26e163bd47890e8cf90d69fc4, type: 3}
