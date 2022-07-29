@@ -19,30 +19,25 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _lives = 3;
     private SpawnManager _spawnManager;
-
     [SerializeField]
     private bool _isTripleShotActive = false;
     [SerializeField]
     private bool _isSpeedBoostActive = false;
     [SerializeField]
     private bool _isShieldActive = false;
-
     [SerializeField]
     private GameObject _shieldVisualizer;
-    
     [SerializeField]
     private GameObject _rightShieldVisualizer, _leftShieldVisualizer;
-
     [SerializeField]
     private AudioClip _laserSoundClip;
-    
     private AudioSource _audioSource;
-
-
     [SerializeField]
     private int _score;
-
     private UIManager _uiManager;
+    private bool _isThrusterActive = false;
+    private float _thrusterSpeedMultiplier = 2;
+
 
     
     // Start is called before the first frame update
@@ -85,6 +80,18 @@ public class Player : MonoBehaviour
         {
             FireLaser();
         }
+        if (Input.GetKeyDown(KeyCode.LeftShift) && _isThrusterActive == false)
+        {
+            EngageThrusters();
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            _isThrusterActive = false;
+            _speed /= _thrusterSpeedMultiplier;
+        }
+        
+
+    
 
 
     }
@@ -157,13 +164,19 @@ public class Player : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+    public void EngageThrusters()
+    {
+        _isThrusterActive = true;
+        _speed *= _thrusterSpeedMultiplier;
+
+    }
 
     public void AddtoScore(int points)
     {
-        //add 10 to the score.
+    
         _score += points;
         _uiManager.UpdateScore(_score);
-        //communicate with UI to update the score.
+    
     }
 
     public void TripleShotActive()
