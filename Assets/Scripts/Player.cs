@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     private float _canFire = -1f;
     [SerializeField]
     private int _lives = 3;
+    //[SerializeField]
+    //private int _shieldStrength = 0;
     private SpawnManager _spawnManager;
     [SerializeField]
     private bool _isTripleShotActive = false;
@@ -26,7 +28,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private bool _isShieldActive = false;
     [SerializeField]
+    private int _shieldStrength = 3;
+    [SerializeField]
     private GameObject _shieldVisualizer;
+    [SerializeField]
+    private SpriteRenderer _shieldRenderer;
     [SerializeField]
     private GameObject _rightShieldVisualizer, _leftShieldVisualizer;
     [SerializeField]
@@ -34,6 +40,7 @@ public class Player : MonoBehaviour
     private AudioSource _audioSource;
     [SerializeField]
     private int _score;
+    
     private UIManager _uiManager;
     private bool _isThrusterActive = false;
     private float _thrusterSpeedMultiplier = 2;
@@ -137,10 +144,25 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
+        
         if(_isShieldActive == true)
         {
-            _isShieldActive = false;
-            _shieldVisualizer.SetActive(false);
+            _shieldStrength--;
+
+            switch (_shieldStrength)
+            {
+                case 0:
+                    _isShieldActive = false;
+                    _shieldVisualizer.SetActive(false);
+                    break;
+                case 1:
+                    _shieldRenderer.color = new Color(1f, 0f, 0f, .15f);
+                    break;
+                case 2:
+                    _shieldRenderer.color = new Color(0f, 0f, 1f, .15f);
+                    break;
+
+            }
             return;
         }
 
@@ -149,6 +171,7 @@ public class Player : MonoBehaviour
         if(_lives == 2)
         {
             _rightShieldVisualizer.SetActive(true);
+
         }
         else if(_lives == 1)
         {
@@ -187,15 +210,19 @@ public class Player : MonoBehaviour
 
     public void SpeedBoostActive()
     {
-        _isSpeedBoostActive = true;
-        _speed *= _speedMultiplier;
-        StartCoroutine(SpeedBoostPowerDownRoutine());
+        if (_isSpeedBoostActive == false)
+        {
+            _isSpeedBoostActive = true;
+            _speed *= _speedMultiplier;
+            StartCoroutine(SpeedBoostPowerDownRoutine());
+        }
     }
 
     public void ShieldActive()
     {
         _isShieldActive = true;
         _shieldVisualizer.SetActive(true);
+        _shieldStrength = 3;
     }
 
     IEnumerator TripleShotPowerDownRoutine()
