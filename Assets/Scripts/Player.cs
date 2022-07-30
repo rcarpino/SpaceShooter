@@ -40,10 +40,11 @@ public class Player : MonoBehaviour
     private AudioSource _audioSource;
     [SerializeField]
     private int _score;
-    
     private UIManager _uiManager;
     private bool _isThrusterActive = false;
     private float _thrusterSpeedMultiplier = 2;
+    private int _ammoCount = 15;
+
 
 
     
