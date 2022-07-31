@@ -40,10 +40,14 @@ public class Player : MonoBehaviour
     private AudioSource _audioSource;
     [SerializeField]
     private int _score;
+    [SerializeField]
+    private int _ammoCount = 15;
+
     private UIManager _uiManager;
     private bool _isThrusterActive = false;
     private float _thrusterSpeedMultiplier = 2;
-    private int _ammoCount = 15;
+    
+   
 
 
 
@@ -51,6 +55,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponentInChildren<UIManager>();
         _audioSource = GetComponent<AudioSource>();
@@ -84,7 +89,7 @@ public class Player : MonoBehaviour
     {
         CalculateMovement();
 
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire)
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire && _ammoCount != 0)
         {
             FireLaser();
         }
@@ -126,9 +131,12 @@ public class Player : MonoBehaviour
     }
 
     void FireLaser()
-    { 
-        _canFire = Time.time + _fireRate;
+    {
+        _ammoCount--;
+        AmmoCount(_ammoCount);
 
+        _canFire = Time.time + _fireRate;
+        
         if(_isTripleShotActive == true)
         {
             Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
@@ -194,6 +202,12 @@ public class Player : MonoBehaviour
         _speed *= _thrusterSpeedMultiplier;
 
     }
+
+    public void AmmoCount(int ammoCount)
+    {
+        _uiManager.UpdateAmmoCount(ammoCount);
+    }
+
 
     public void AddtoScore(int points)
     {
