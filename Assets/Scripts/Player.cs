@@ -240,6 +240,27 @@ public class Player : MonoBehaviour
         _shieldStrength = 3;
     }
 
+    public void AmmoReload()
+    {
+        _ammoCount = 15;
+        AmmoCount(_ammoCount);
+    }
+
+    public void HealthPowerup()
+    {
+        if(_lives == 2)
+        {
+            _lives++;
+            _rightShieldVisualizer.SetActive(false);
+        }
+        else if(_lives == 1)
+        {
+            _lives++;
+            _leftShieldVisualizer.SetActive(false);
+        }
+        _uiManager.UpdateLives(_lives);
+    }
+
     IEnumerator TripleShotPowerDownRoutine()
     {
         yield return new WaitForSeconds(5.0f);
