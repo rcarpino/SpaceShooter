@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private SpriteRenderer _shieldRenderer;
     [SerializeField]
-    private GameObject _rightShieldVisualizer, _leftShieldVisualizer;
+    private GameObject _rightDamageVisualizer, _leftDamageVisualizer;
     [SerializeField]
     private AudioClip _laserSoundClip;
     private AudioSource _audioSource;
@@ -179,12 +179,12 @@ public class Player : MonoBehaviour
         
         if(_lives == 2)
         {
-            _rightShieldVisualizer.SetActive(true);
+            _rightDamageVisualizer.SetActive(true);
 
         }
         else if(_lives == 1)
         {
-            _leftShieldVisualizer.SetActive(true);
+            _leftDamageVisualizer.SetActive(true);
         }
 
         _uiManager.UpdateLives(_lives);
@@ -251,12 +251,12 @@ public class Player : MonoBehaviour
         if(_lives == 2)
         {
             _lives++;
-            _rightShieldVisualizer.SetActive(false);
+            _rightDamageVisualizer.SetActive(false);
         }
         else if(_lives == 1)
         {
             _lives++;
-            _leftShieldVisualizer.SetActive(false);
+            _leftDamageVisualizer.SetActive(false);
         }
         _uiManager.UpdateLives(_lives);
     }
